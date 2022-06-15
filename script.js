@@ -8,8 +8,9 @@ const _checkBtn=document.getElementById('check-answer')
 const _playAgainBtn=document.getElementById('play-again')
 const _result=document.getElementById('result')
 
-let correctAnswer="",correctScore=askedCount=0,totalQuestion=10;
 
+// let correctAnswer= ''
+let correctScore = askedCount = 0,totalQuestion=10;
 // event listener 
 function eventListener(){
     _checkBtn.addEventListener('click',checkAnswer)
@@ -42,6 +43,7 @@ function showQuestion(data){
         <li> ${index + 1} .<span> ${option} </span> </li>
       `).join('')}
     `;
+    console.log(correctAnswer)
     selectOption();
 }
 // options selection 
@@ -57,16 +59,18 @@ function selectOption(){
         
     });
 
-    console.log(correctAnswer);
+    ;
     
 }
 
 // answer checking 
 
-function checkAnswer(){
+function checkAnswer(data){
+  let correctAnswer = data.correct_answer;
    _checkBtn.disabled=true;
    if (_options.querySelector('.selected')){
       let selectedAnswer=_options.querySelector('.selected span').textContent;
+      
       if (selectedAnswer == correctAnswer){
         correctScore++;
         _result.innerHTML=`<p> <i class ='fas fa-check'></i>Correct Answer! </p>`;
@@ -75,3 +79,4 @@ function checkAnswer(){
       }
    }
 }
+
